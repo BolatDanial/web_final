@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f3e6;
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Header */
+header {
+    background: #004d40;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav {
+    background: #00796b;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    background: #004d40;
+    border-radius: 5px;
+}
+
+/* Forms */
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-default {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #00796b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-default:hover {
+    background: #004d40;
+}
+
+.btn-cancel {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #d23b11;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-cancel:hover {
+    background: #7a220a;
+}
+
+.btn-settings {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #f0d92e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-settings:hover {
+    background: #9e8f1d;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #00796b;
+    color: white;
+}
+
+li {
+    margin-bottom: 30px;
+}
+
+/* Profile & Dashboard */
+.profile-container,
+.dashboard-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    background: #004d40;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px;
+    }
+}

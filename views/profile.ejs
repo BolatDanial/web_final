@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        Grand Library 📚 – A Place for Every Book Lover
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Browse Books</a>
+        <% if (!session.user) { %>
+            <a href="/login">Sign in / Sign up</a>
+        <% } else { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        <% } %>
+    </nav>
+
+    <div class="container">
+        <h2>Profile</h2>
+
+        <img src="<%= user.profilePic %>" alt="Profile Picture" width="150" height="150">
+        <p><strong>Name:</strong> <%= user.name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+
+        <a href="/profile/edit"><button class="btn-settings">Edit Profile</button></a>
+
+        <form action="/profile/delete" method="POST" style="margin-top: 20px;">
+            <button class="btn-cancel" type="submit" onclick="return confirm('Are you sure you want to delete your account?')">
+                Delete Account
+            </button>
+        </form>
+
+        <a href="/dashboard"><button class="btn-default">
+            Back to Dashboard
+        </button></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Grand Library. All rights reserved.
+    </footer>
+
+</body>
+</html>

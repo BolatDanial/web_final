@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        Grand Library 📚 – A Place for Every Book Lover
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Browse Books</a>
+        <% if (!session.user) { %>
+            <a href="/login">Sign in / Sign up</a>
+        <% } else { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        <% } %>
+    </nav>
+
+    <div class="container">
+        <h2>Login</h2>
+
+        <% if (errors.length > 0) { %>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li style="color: red;"><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="/register">Don't have an account? Register</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Grand Library. All rights reserved.
+    </footer>
+    
+</body>
+</html>

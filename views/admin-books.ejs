@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Books</h1>
+        <a href="/admin/books/add">➕ Add New Book</a>
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Available Copies</th>
+                <th>Actions</th>
+            </tr>
+            <% books.forEach(book => { %>
+                <tr>
+                    <td><%= book.title %></td>
+                    <td><%= book.author %></td>
+                    <td><%= book.category %></td>
+                    <td><%= book.availableCopies %></td>
+                    <td>
+                        <a href="/admin/books/edit/<%= book._id %>">✏️ Edit</a>
+                        <form action="/admin/books/delete/<%= book._id %>" method="POST" style="display:inline;">
+                            <button type="submit">🗑️ Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+</body>
+</html>

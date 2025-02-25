@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Grand Library</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        Grand Library 📚 – A Place for Every Book Lover
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books">Browse Books</a>
+        <% if (!session.user) { %>
+            <a href="/login">Sign in / Sign up</a>
+        <% } else { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        <% } %>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to Grand Library</h1>
+        <p>Your gateway to thousands of books across different genres. Whether you love fiction, non-fiction, or academic texts, we have something for everyone.</p>
+
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>📖 A vast collection of books in multiple categories.</li>
+            <li>🔍 Easy search and borrow system.</li>
+            <li>👥 User-friendly experience with personal dashboards.</li>
+            <li>🌍 24/7 access to our digital catalog.</li>
+        </ul>
+
+        <h2>How It Works</h2>
+        <p>Simply register for an account, browse our collection, and borrow books with a single click. Our library system keeps track of all your borrowed books and due dates.</p>
+
+        <div style="text-align:center; margin-top:20px;">
+            <% if (!session.user) { %>
+                <a href="/register"><button class="btn-default">Join Now</button></a>
+                <a href="/login"><button class="btn-default">Login</button></a>
+            <% } else { %>
+                <a href="/books"><button class="btn-default">Start Browsing</button></a>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Grand Library. All rights reserved.
+    </footer>
+
+</body>
+</html>

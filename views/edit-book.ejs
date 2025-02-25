@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Books</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= book ? "Edit Book" : "Add New Book" %></h1>
+
+        <form action="<%= book ? '/admin/books/edit/' + book._id : '/admin/books/add' %>" method="POST" enctype="multipart/form-data">
+            <label>Title:</label>
+            <input type="text" name="title" value="<%= book ? book.title : '' %>" required>
+
+            <label>Author:</label>
+            <input type="text" name="author" value="<%= book ? book.author : '' %>" required>
+
+            <label>Category:</label>
+            <input type="text" name="category" value="<%= book ? book.category : '' %>" required>
+
+            <label>Available Copies:</label>
+            <input type="number" name="availableCopies" value="<%= book ? book.availableCopies : '1' %>" required>
+
+            <label>Cover Image:</label>
+            <input type="file" name="coverImage">
+            
+            <% if (book && book.coverImage) { %>
+                <p>Current Image:</p>
+                <img src="<%= book.coverImage %>" width="100">
+            <% } %>
+
+            <button type="submit"><%= book ? "Update Book" : "Add Book" %></button>
+        </form>
+    </div>
+</body>
+</html>
