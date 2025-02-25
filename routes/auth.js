@@ -180,12 +180,12 @@ router.post("/profile/delete", isAuthenticated, async (req, res) => {
 });
 
 router.get("/admin", isAdmin, (req, res) => {
-    res.send("Welcome Admin! Manage users here.");
+    res.render("admin", { session: req.session });
 });
 
 router.get("/admin/users", isAdmin, async (req, res) => {
     const users = await User.find();
-    res.render("admin-users", { users, session: req.session  });
+    res.render("admin-users", { users, session: req.session });
 });
 
 module.exports = router;
