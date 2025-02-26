@@ -32,3 +32,4 @@ go.work.sum
 node_modules/
 
 web/node_modules/
+.vercel
