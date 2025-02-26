@@ -3,8 +3,42 @@
 <head>
     <title>Books</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // Function to update book list dynamically
+        async function searchBooks() {
+            const query = document.getElementById("search").value;
+            const category = document.getElementById("category").value;
+            
+            const response = await fetch(`/books/search?query=${query}&category=${category}`);
+            const books = await response.json();
+
+            const bookContainer = document.getElementById("book-list");
+            bookContainer.innerHTML = ""; // Clear current list
+
+            books.forEach(book => {
+                const bookCard = `
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <div class="card h-100">
+                            <img src="${book.coverImage}" class="card-img-top" alt="Book Cover">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text">by ${book.author}</p>
+                                <div class="mt-auto">
+                                    <form action="/borrow/${book._id}" method="POST">
+                                        <button class="btn-default btn-primary w-100" type="submit">Borrow</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                bookContainer.innerHTML += bookCard;
+            });
+        }
+    </script>
 </head>
 <body>
+
     <!-- Header -->
     <header>
         Grand Library 📚 – A Place for Every Book Lover
@@ -23,20 +57,44 @@
         <% } %>
     </nav>
 
+    <!-- Search and Filter Section -->
     <div class="container">
         <h2>Book List</h2>
-        <ul>
+
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" id="search" class="form-control" placeholder="Search by book name..." onkeyup="searchBooks()">
+            </div>
+            <div class="col-md-6">
+                <select id="category" class="form-select" onchange="searchBooks()">
+                    <option value="">All Categories</option>
+                    <% categories.forEach(cat => { %>
+                        <option value="<%= cat %>" <%= selectedCategory === cat ? "selected" : "" %>><%= cat %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+
+        <!-- Books List -->
+        <div class="row g-4 mt-4" id="book-list">
             <% books.forEach(book => { %>
-                <li>
-                    <strong><%= book.title %></strong> by <%= book.author %> 
-                    (<%= book.category ? book.category.name : 'No Category' %>) 
-                    - Available: <%= book.availableCopies %>
-                    <form action="/borrow/<%= book._id %>" method="POST">
-                        <button class="btn-default" type="submit">Borrow</button>
-                    </form>
-                </li>
+                <div class="col-md-4 col-sm-6 col-12">
+                    <div class="card h-100">
+                        <img src="<%= book.coverImage %>" class="card-img-top" alt="Book Cover">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><%= book.title %></h5>
+                            <p class="card-text">by <%= book.author %></p>
+                            <p class="card-text">Available copies: <%= book.availableCopies %></p>
+                            <div class="mt-auto">
+                                <form action="/borrow/<%= book._id %>" method="POST">
+                                    <button class="btn-default btn-primary w-100" type="submit">Borrow</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <% }); %>
-        </ul>
+        </div>
     </div>
 
     <!-- Footer -->

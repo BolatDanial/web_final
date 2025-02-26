@@ -33,7 +33,7 @@
         <% if (borrows.length > 0) { %>
             <ul>
                 <% borrows.forEach(borrow => { %>
-                    <li>
+                    <li class="block">
                         <strong><%= borrow.book.title %></strong> by <%= borrow.book.author %>  
                         <br> Borrowed on: <%= borrow.borrowDate.toDateString() %> 
                         <br> Status: <%= borrow.returned ? "Returned" : "Not Returned" %>
@@ -55,7 +55,7 @@
             <p>You haven't borrowed any books yet.</p>
         <% } %>
 
-        <a href="/books">Browse Books</a>
+        <a href="/books"><button class="btn-default">Browse Books</button></a>
     </div>
 
     <!-- Footer -->

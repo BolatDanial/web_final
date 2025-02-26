@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const Book = require("../models/Book");
+const User = require("../models/User");
 const { isAdmin } = require("../middlewares/auth");
 
 const router = express.Router();
@@ -15,6 +16,61 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage });
+
+
+// 📌 Show User Management Page
+router.get("/users", isAdmin, async (req, res) => {
+    try {
+        const users = await User.find();
+        res.render("admin-users", { users });
+    } catch (err) {
+        console.error("Error fetching users:", err);
+        res.send("Error loading user list");
+    }
+});
+
+// 📌 Edit User Page
+router.get("/users/edit/:id", isAdmin, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).send("User not found");
+        res.render("edit-user", { user });
+    } catch (err) {
+        console.error(err);
+        res.send("Error fetching user data");
+    }
+});
+
+// 📌 Handle User Update
+router.post("/users/edit/:id", isAdmin, async (req, res) => {
+    try {
+        const { name, email, role } = req.body;
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).send("User not found");
+
+        user.name = name;
+        user.email = email;
+        user.role = role; // Can change role (user/admin)
+
+        await user.save();
+        res.redirect("/admin/users");
+    } catch (err) {
+        console.error(err);
+        res.send("Error updating user");
+    }
+});
+
+// 📌 Delete User
+router.post("/users/delete/:id", isAdmin, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.redirect("/admin/users");
+    } catch (err) {
+        console.error(err);
+        res.send("Error deleting user");
+    }
+});
+
 
 // 📌 Show Admin Book Management Page
 router.get("/books", isAdmin, async (req, res) => {

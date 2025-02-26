@@ -56,6 +56,66 @@ Grand Library is a web application that allows users to browse, borrow, and mana
 - Manage your profile and view borrowed books in the dashboard.
 - Admins can manage users and books through the admin dashboard.
 
+## API Routes
+### Books
+<table>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>GET</td>
+<td>/books</td>
+<td>View all books</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/borrow/:bookId</td>
+<td>Borrow a book</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/return/:id</td>
+<td>Return a book</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/books/add</td>
+<td>Add a new book (Admin)</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/books/edit/:id</td>
+<td>Edit book details (Admin)</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/books/delete/:id</td>
+<td>Delete book (Admin)</td>
+</tr>
+</table>
+
+### Users
+<table>
+<tr>
+<td>GET</td>
+<td>/users</td>
+<td>View all users (Admin)</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>/users/delete/:id</td>
+<td>Delete user (Admin)</td>
+</tr>
+</table>
 
 ## Technologies Used
 
